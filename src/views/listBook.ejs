@@ -11,6 +11,21 @@
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 <body>
+
+<form action="/book/list" method="GET">
+
+    <label>Keyword:</label>
+
+    <input type="text" id="keyword" name="keyword">
+
+    <label>Publishing house:</label>
+
+    <input type="text" id="author" name="publishingHouse">
+
+    <button type="submit" class="btn btn-primary">Search</button>
+
+</form>
+
 <h2>List Books</h2>
 
 <% for(const book of books) { %>

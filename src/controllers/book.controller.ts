@@ -34,7 +34,24 @@ export class BookController {
 
     static async getListPage(req, res) {
         try {
-            const books = await Book.find().populate('category').populate('publishingHouse');
+            let query = {};
+            if (req.query.keyword && req.query.keyword != '') {
+                let keywordFind = req.query.keyword || '';
+                query = {
+                    "keywords.keyword": {
+                        $regex: keywordFind
+                    }
+                }
+            }
+            if (req.query.publishingHouse && req.query.publishingHouse != '') {
+                let publishingHouseFind = req.query.publishingHouse || '';
+                let publishingHouse = await PublishingHouse.find({name: {$regex: publishingHouseFind}});
+                query = {
+                    ...query,
+                    publishingHouse
+                }
+            }
+            const books = await Book.find(query).populate('category').populate('publishingHouse');
             res.render('listBook', {books});
         } catch (err) {
             res.render('error');
