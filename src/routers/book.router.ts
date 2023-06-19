@@ -1,6 +1,5 @@
 import {Router} from "express";
 import multer from "multer";
-import {Book} from "../models/schemas/book.schema";
 import {BookController} from "../controllers/book.controller";
 
 const bookRouter = Router();
